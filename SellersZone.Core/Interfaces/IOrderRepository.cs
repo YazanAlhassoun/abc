@@ -1,0 +1,18 @@
+﻿using SellersZone.Core.DTOs;
+using SellersZone.Core.Wrapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SellersZone.Core.Interfaces
+{
+    public interface IOrderRepository
+    {
+        Response<OrderDto> GetOrder(RequestParam param, ClaimsPrincipal userClaims);
+        Response<OrderDto> AddOreder(OrderDto orederDto, ClaimsPrincipal userClaims);
+        Response<OrderDto> UpdateOrder(OrderDto orederDto, ClaimsPrincipal userClaims);
+    }
+}

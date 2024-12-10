@@ -1,0 +1,101 @@
+{
+  "name": "fastkart-combined",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "npm run start:user",
+    "start:user": "ng serve fastkart-ssr",
+    "start:admin": "ng serve Fastkart-Admin-SSR",
+    "build:user": "ng build fastkart-ssr",
+    "build:admin": "ng build Fastkart-Admin-SSR",
+    "watch:user": "ng build fastkart-ssr --watch --configuration development",
+    "watch:admin": "ng build Fastkart-Admin-SSR --watch --configuration development",
+    "test:user": "ng test fastkart-ssr",
+    "test:admin": "ng test Fastkart-Admin-SSR",
+    "dev:ssr:user": "ng run fastkart-ssr:serve-ssr",
+    "dev:ssr:admin": "ng run Fastkart-Admin-SSR:serve-ssr",
+    "serve:ssr:user": "node dist/fastkart-ssr/server/main.js",
+    "serve:ssr:admin": "node dist/Fastkart-Admin-SSR/server/main.js",
+    "build:ssr:user": "ng build fastkart-ssr && ng run fastkart-ssr:server",
+    "build:ssr:admin": "ng build Fastkart-Admin-SSR && ng run Fastkart-Admin-SSR:server",
+    "prerender:user": "ng run fastkart-ssr:prerender",
+    "prerender:admin": "ng run Fastkart-Admin-SSR:prerender"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^18.2.13",
+    "@angular/cdk": "^17.3.10",
+    "@angular/common": "^18.2.13",
+    "@angular/compiler": "^18.2.13",
+    "@angular/core": "^18.2.13",
+    "@angular/forms": "^18.2.13",
+    "@angular/material": "^18.2.13",
+    "@angular/platform-browser": "^18.2.13",
+    "@angular/platform-browser-dynamic": "^18.2.13",
+    "@angular/platform-server": "^18.2.13",
+    "@angular/router": "^18.2.13",
+    "@angular/ssr": "^18.2.12",
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@ng-bootstrap/ng-bootstrap": "^16.0.0-rc.2",
+    "@ngx-loading-bar/core": "^6.0.2",
+    "@ngx-loading-bar/http-client": "^6.0.2",
+    "@ngx-loading-bar/router": "^6.0.2",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
+    "@ngxs/storage-plugin": "^3.8.1",
+    "@ngxs/store": "^3.8.1",
+    "@types/googlemaps": "^3.43.3",
+    "bootstrap": "^5.2.3",
+    "browser-sync": "^3.0.2",
+    "feather-icons": "^4.29.1",
+    "ng-apexcharts": "1.10.0",
+    "ng-select2-component": "^14.0.1",
+    "ngx-dropzone": "^3.1.0",
+    "ngx-editor": "^16.0.1",
+    "ngx-image-zoom": "^2.1.0",
+    "ngx-owl-carousel-o": "^17.0.0",
+    "ngx-slider-v2": "^17.0.0",
+    "ngx-toastr": "^18.0.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.14.2"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^18.2.12",
+    "@angular/cli": "^18.2.12",
+    "@angular/compiler-cli": "^18.2.13",
+    "@types/express": "^4.17.0",
+    "@types/feather-icons": "^4.29.1",
+    "@types/jasmine": "~5.1.0",
+    "@types/node": "^14.15.0",
+    "jasmine-core": "~4.6.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "swiper": "^8.4.7",
+    "typescript": "~5.5.4"
+  },
+  "overrides": {
+    "@ngxs/devtools-plugin": {
+      "@angular/core": "$@angular/core"
+    },
+    "@ngxs/form-plugin": {
+      "@angular/core": "$@angular/core",
+      "@angular/forms": "$@angular/forms"
+    },
+    "@ngxs/logger-plugin": {
+      "@angular/core": "$@angular/core"
+    },
+    "@ngxs/router-plugin": {
+      "@angular/core": "$@angular/core",
+      "@angular/router": "$@angular/router"
+    },
+    "@ngxs/storage-plugin": {
+      "@angular/core": "$@angular/core"
+    },
+    "@ngxs/store": {
+      "@angular/core": "$@angular/core"
+    }
+  }
+}

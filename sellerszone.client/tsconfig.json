@@ -1,0 +1,45 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc", // General build output directory
+    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": false,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "strictPropertyInitialization": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2022", // Change to ES2015 for broader compatibility
+    "module": "ESNext", // Change to ESNext for modern module resolution
+    "useDefineForClassFields": false,
+    "lib": [
+      "dom", // Use DOM types
+      "ES2022" // Additional ES features like async/await, etc.
+    ],
+    "skipLibCheck": true // Skip type checking of declaration files (helps avoid conflicts)
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "include": [
+    "projects/admin/src/**/*.ts",  // Include all TS files in the admin project
+    "projects/user/src/**/*.ts"    // Include all TS files in the user project
+  ],
+  "exclude": [
+    "node_modules", // Exclude node_modules
+    "out-tsc", // Exclude the build output
+    "projects/admin/**/*.spec.ts", // Exclude spec files in the admin project
+    "projects/user/**/*.spec.ts" // Exclude spec files in the user project
+  ]
+}

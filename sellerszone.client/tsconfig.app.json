@@ -1,0 +1,55 @@
+// {
+//   "extends": "./tsconfig.json",
+//   "compilerOptions": {
+//     "outDir": "./out-tsc/app",
+//     "types": []
+//   },
+//   "files": [
+//     "projects/user/src/main.ts",  // Correct path to main.ts for user project
+//     "projects/admin/src/main.ts"  // Add this line for admin project
+//   ],
+//   "include": [
+//     "projects/user/src/**/*.d.ts",  // Include TypeScript definition files from the user project
+//     "projects/admin/src/**/*.d.ts"  // Include TypeScript definition files from the admin project
+//   ]
+// }
+
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": [ "node" ]
+  },
+  "files": [
+    "projects/admin/src/main.ts" , // Correct path to main.ts file
+    "projects/user/src/main.ts" ,
+  ],
+  "include": [
+    "projects/admin/src/**/*.d.ts",  // Include TypeScript definition files from the user project
+    "projects/user/src/**/*.d.ts"
+  ]
+}
+
+
+
+// /* To learn more about this file see: https://angular.io/config/tsconfig. */
+// {
+//   "compilerOptions": {
+//     "outDir": "./out-tsc/app",
+//     "types": [
+//       "node"
+//     ]
+//   },
+//   "files": [
+    
+//   ],
+//   "references": [
+//     { "path": "./projects/user/tsconfig.app.json" },
+//     { "path": "./projects/admin/tsconfig.app.json" }
+//   ],
+//   // "include": [
+//   //   "projects/user/src/**/*.d.ts",
+//   //   "projects/admin/src/**/*.d.ts"
+//   // ]
+// }
