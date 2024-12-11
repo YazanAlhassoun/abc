@@ -9,33 +9,31 @@
         <div class="row g-sm-4 g-2">
             <div class="col-lg-6">
                 <div class="slider-image">
-                    <img [src]="selectedVariation && selectedVariation.variation_image
-                                ? selectedVariation.variation_image.original_url
-                                : (product.product_thumbnail 
-                                ? product.product_thumbnail.original_url 
+                    <img [src]="selectedVariation && selectedVariation?.variation_image
+                                ? selectedVariation?.variation_image?.original_url
+                                : (product?.product_thumbnail 
+                                ? product?.product_thumbnail?.original_url 
                                 : 'assets/images/product.png')" class="img-fluid" alt="product">
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="right-sidebar-modal">
-                    <h4 class="title-name">{{ selectedVariation ? selectedVariation.name : product.name }}</h4>
+                    <h4 class="title-name">{{ selectedVariation ? selectedVariation?.name : product?.name }}</h4>
                     <h4 class="price">
-                        {{ (selectedVariation.sale_price || product.sale_price || 0) | currencySymbol }}
-                      </h4>
-                      
-                      
-                    <div class="mt-2" [innerHtml]="product.description | summary:200"></div>
+                        {{ (selectedVariation ? selectedVariation?.sale_price : product?.sale_price) | currencySymbol }}
+                    </h4>
+                    <div class="mt-2" [innerHtml]="product?.description | summary:200"></div>
                     <div class="selection-section mt-4" *ngFor="let attribute of product?.attributes">
                         <h4>{{ attribute?.name }}:</h4>
                         <ul>
                             <ng-container *ngFor="let value of attribute.attribute_values">
-                                <li [class.active]="variantIds.includes(value.id)"
-                                    *ngIf="attributeValues.includes(value.id)">
+                                <li [class.active]="variantIds?.includes(value?.id)"
+                                    *ngIf="attributeValues?.includes(value?.id)">
                                     <app-button 
                                         [class]="''"
                                         [id]="'attribute_'+attribute?.id+'_'+value?.id"
                                         [spinner]="false"
-                                        (click)="setVariant(product.variations, value)">
+                                        (click)="setVariant(product?.variations, value)">
                                         {{ value?.value }}
                                     </app-button>
                                 </li>
@@ -63,7 +61,7 @@
                             </div>
                         </div>
                         <app-button 
-                            [id]="'addcartbtnVariation'+product.id"
+                            [id]="'addcartbtnVariation'+product?.id"
                             [class]="'btn btn-animation'" (click)="addToCart(product)"
                             *ngIf="selectedVariation && selectedVariation?.stock_status == 'in_stock' else outStock">
                             {{ 'add_to_cart' | translate }}
@@ -72,7 +70,7 @@
                             <app-button 
                                 [class]="'btn btn-animation disabled'"
                                 [disabled]="true">
-                                {{ (selectedVariation.stock_status == 'out_of_stock' ? 'out_of_stock' : 'add_to_cart') | translate }}
+                                {{ (selectedVariation?.stock_status == 'out_of_stock' ? 'out_of_stock' : 'add_to_cart') | translate }}
                             </app-button>
                         </ng-template>
                     </div>

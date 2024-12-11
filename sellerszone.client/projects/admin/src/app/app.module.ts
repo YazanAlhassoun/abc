@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsModule } from '@ngxs/store';
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './shared/shared.module';
@@ -31,45 +31,51 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 
-@NgModule({ declarations: [
-        AppComponent
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }),
-        AppRoutingModule,
-        NgxsModule.forRoot([
-            LoaderState,
-            MenuState,
-            NotificationState,
-            DashboardState,
-            AccountState,
-            CountryState,
-            StateState,
-            SettingState,
-            AttachmentState
-        ]),
-        NgxsStoragePluginModule.forRoot({
-            key: [
-                'auth',
-                'dashboard',
-                'notification',
-                'account',
-                'country',
-                'state',
-                'setting'
-            ]
-        }),
-        BrowserAnimationsModule,
-        ToastrModule.forRoot({
-            positionClass: 'toast-top-center',
-        }),
-        SharedModule,
-        CoreModule,
-        LoadingBarRouterModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient],
-            },
-        })], providers: [provideHttpClient(withInterceptorsFromDi())] })
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    AppRoutingModule,
+    NgxsModule.forRoot([
+      LoaderState,
+      MenuState,
+      NotificationState,
+      DashboardState,
+      AccountState,
+      CountryState,
+      StateState,
+      SettingState,
+      AttachmentState
+    ]),
+    NgxsStoragePluginModule.forRoot({
+      key: [
+        'auth',
+        'dashboard',
+        'notification',
+        'account',
+        'country',
+        'state',
+        'setting'
+      ]
+    }),
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+    }),
+    SharedModule,
+    CoreModule,
+    LoadingBarRouterModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+  ],
+  bootstrap: [AppComponent]
+})
 export class AppModule { }

@@ -143,7 +143,7 @@
                                 </app-form-fields>
                                 <app-form-fields [labelClass]="'form-label-title col-sm-3 mb-0'" [gridClass]="'col-sm-9'" 
                                     [label]="'exclude_products'" [for]="'exclude_product'" [required]="false"
-                                    *ngIf="form.controls['is_apply_all']?.value; else includeProduct"
+                                    *ngIf="form?.controls['is_apply_all']?.value; else includeProduct"
                                     >
                                     <select2 class="custom-select" 
                                         [data]="(product$ | async)?.length ? (product$ | async) : []"

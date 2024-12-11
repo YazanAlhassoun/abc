@@ -24,7 +24,7 @@ export class TableComponent {
   @Select(LoaderState.status) loadingStatus$: Observable<boolean>;
   @Select(AccountState.permissions) permissions$: Observable<Permission[]>;
 
-  @Input() tableConfig: any;
+  @Input() tableConfig: TableConfig;
   @Input() hasCheckbox: boolean = false;
   @Input() hasDuplicate: boolean = false;
   @Input() topbar: boolean = true;
@@ -77,8 +77,8 @@ export class TableComponent {
     this.tableChanged.emit(this.tableData);
     this.permissions$.subscribe(permission => {
       this.permissions = permission?.map((value: Permission) => value?.name);
-      const permissions = this.tableConfig?.rowActions?.map((action:any) => action?.permission).filter((item:any) => item != undefined);
-      if(permissions?.length && !permissions.some((action:any) => this.permissions?.includes(<any>action))){
+      const permissions = this.tableConfig?.rowActions?.map(action => action?.permission).filter(item => item != undefined);
+      if(permissions?.length && !permissions.some(action => this.permissions?.includes(<any>action))){
         this.tableConfig['rowActions'] = [];
       }
       if(!this.hasPermission(['delete']) && !this.hasDuplicate) {
@@ -93,7 +93,7 @@ export class TableComponent {
   }
 
   hasPermission(actions?: string[]) {
-    let permission = this.tableConfig?.rowActions?.find((action:any) => actions?.includes(action.actionToPerform))?.permission;
+    let permission = this.tableConfig?.rowActions?.find(action => actions?.includes(action.actionToPerform))?.permission;
     if (!Array.isArray(permission) && this.permissions?.includes(permission!)) {
       return true;
     } else {
@@ -135,7 +135,7 @@ export class TableComponent {
     this.tableChanged.emit(this.tableData);
   }
 
-  onActionClicked(actionType: any, rowData: any, value?: number) {
+  onActionClicked(actionType: string, rowData: any, value?: number) {
     this.renderer.addClass(this.document.body, 'loader-none');
     if(this.hasPermission([actionType])) {
       rowData[actionType] = value;
@@ -179,7 +179,7 @@ export class TableComponent {
     let status = false;
     this.tableConfig?.data?.filter((data: any) => {
       if(this.selected.includes(data?.id)) {
-        const permission = this.tableConfig?.rowActions?.find((action:any) => action.actionToPerform == 'delete')?.permission as string;
+        const permission = this.tableConfig?.rowActions?.find(action => action.actionToPerform == 'delete')?.permission as string;
         if(permission && this.permissions?.includes(permission)){
           status = true;
         }
@@ -192,7 +192,7 @@ export class TableComponent {
     let status = false;
     this.tableConfig?.data?.filter((data: any) => {
       if(this.selected.includes(data?.id)) {
-        const permission = this.tableConfig?.rowActions?.find((action:any) => action.actionToPerform == 'edit')?.permission as string;
+        const permission = this.tableConfig?.rowActions?.find(action => action.actionToPerform == 'edit')?.permission as string;
         if(permission && this.permissions?.includes(permission)){
           status = true;
         }

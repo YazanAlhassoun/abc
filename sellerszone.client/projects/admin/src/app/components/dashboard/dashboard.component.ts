@@ -112,10 +112,14 @@ export class DashboardComponent {
     total: 0
   };
 
-  constructor(private renderer: Renderer2, config: NgbRatingConfig,
+  constructor(
+    private renderer: Renderer2,
+    config: NgbRatingConfig,
     @Inject(PLATFORM_ID) platformId: object,
     @Inject(DOCUMENT) private document: Document,
-    private store: Store, private router: Router, currencySymbolPipe: CurrencySymbolPipe) { 
+    private store: Store, 
+    private router: Router, 
+    currencySymbolPipe: CurrencySymbolPipe) { 
     config.max = 5;
     config.readonly = true;  
     
@@ -125,12 +129,12 @@ export class DashboardComponent {
       series: [
         {
           name: "Revenue",
-          data: [] = [],
+          data: []=[],
           color: '#0da487',
         },
         {
           name: "Comission",
-          data: [] = [],
+          data: []=[],
           color: '#FFA53B',
         },
       ],
@@ -219,8 +223,8 @@ export class DashboardComponent {
         }
       ],
       xaxis: {
-        categories: []=[],
-        range: 0 ,
+        categories: [] = [],
+ 
         axisBorder: {
           offsetX: 0,
           show: false,
@@ -236,8 +240,17 @@ export class DashboardComponent {
       if(revenue) {
         chartOptions = {
           series: [
-           
-          ],
+            {
+              name: "Revenue",
+              data: revenue.revenues,
+              color: '#0da487',
+            },
+            {
+              name: "Comission",
+              data: revenue?.commissions,
+              color: '#FFA53B',
+            },
+          ]as any,
           chart: {
             height: 350,
             type: "line",
@@ -323,7 +336,7 @@ export class DashboardComponent {
             }
           ],
           xaxis: {
-            categories: [],
+            categories: this.revenue.months as any,
             range: undefined,
             axisBorder: {
               offsetX: 0,
@@ -332,7 +345,7 @@ export class DashboardComponent {
             axisTicks: {
               show: false,
             },
-          },
+          } as any,
         };
         if (this.isBrowser) {
           const ApexCharts = require('apexcharts');
@@ -375,7 +388,8 @@ export class DashboardComponent {
       this.sellerTableConfig.total = store ? store?.total : 0;
     });
   }
-
+  
+  revenue: { months: string[] } = { months: [] }; // Initialize with default
   ngOnInit() {
     this.store.dispatch(new GetStatisticsCount());
     this.store.dispatch(new GetRevenueChart());
@@ -383,6 +397,7 @@ export class DashboardComponent {
     this.store.dispatch(new GetReviews({ paginate: 5 }));
     this.store.dispatch(new GetBlogs({ status: 1, paginate: 2 }));
     this.store.dispatch(new GetCategories({ type: 'product', status: 1 }));
+    this.revenue = { months: ['January', 'February', 'March', 'April'] };
   }
 
   filterTopProduct(data: Select2UpdateEvent) {

@@ -287,7 +287,7 @@
                                                                   <app-form-fields [label]="'product'" [for]="'product_ids'">
                                                                      <select2 class="custom-select" 
                                                                         [templates]="template" 
-                                                                        [data]=" (product$ | async) ?? []"
+                                                                        [data]="(product$ | async)?.length ? (product$ | async) : []"
                                                                         [placeholder]="'select_product' | translate "
                                                                         formControlName="product_ids" multiple="true"
                                                                         noResultMessage="{{'no_data_found' | translate }}"
@@ -333,8 +333,8 @@
                                                 <div ngbAccordionHeader>
                                                    <button ngbAccordionButton>
                                                       {{ 
-                                                         form.get('content.main_content.section1_products.title')?.value ?
-                                                         form.get('content.main_content.section1_products.title')?.value : 'Enter Title'
+                                                         form.get('content.main_content.section1_products.title').value ?
+                                                         form.get('content.main_content.section1_products.title').value : 'Enter Title'
                                                       }}
                                                    </button>
                                                 </div>

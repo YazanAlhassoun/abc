@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS} from '@angular/common/http';
 
 // Interceptor
 import { AuthInterceptor } from './interceptors/auth.interceptor';

@@ -6,7 +6,7 @@ import { AddToCart } from '../../../action/cart.action';
 import { AddtocartComponent } from './modal/addtocart/addtocart.component';
 
 import { Observable } from 'rxjs';
-import { CartState } from 'projects/user/src/app/shared/state/cart.state';
+import { CartState } from '../../../state/cart.state';
 
 @Component({
   selector: 'app-product-box',

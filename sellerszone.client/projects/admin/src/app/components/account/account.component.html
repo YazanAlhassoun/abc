@@ -7,10 +7,9 @@
                     <form class="theme-form theme-form-2 mega-form" [formGroup]="profileForm" (ngSubmit)="profileFormSubmit();">
                         <div class="row">
                             <app-form-fields [label]="'avatar'" [for]="'image'" [required]="false">
-                                <!-- [image]="(user$ | async)?.profile_image" -->
                                 <app-image-upload 
                                     [multipleImage]="false" 
-                                   
+                                    [image]="(user$ | async)?.profile_image"
                                     (selectedFiles)="selectedFiles($event)"
                                     [helpText]="'*Upload image size 100x100px recommended'">
                                 </app-image-upload>
@@ -32,7 +31,7 @@
                             </app-form-fields>
                             <app-form-fields [label]="'phone'" [for]="'phone'" [required]="true">
                                 <select2 class="custom-select intl-tel-input" [templates]="template" [data]="codes"
-                                    [value]="(user$ | async)?.country_code || []" (update)="selectCode($event)">
+                                    [value]="(user$ | async)?.country_code" (update)="selectCode($event)">
                                     <ng-template #template let-data="data">
                                         <div class="country">
                                             <div class="flag-box">
@@ -64,13 +63,13 @@
                             <app-form-fields [label]="'store_logo' | translate" [for]="'logo'" [required]="false">
                                 <app-image-upload 
                                     [multipleImage]="false"
-                                    
+                                    [image]="(user$ | async)?.store?.store_logo"
                                     (selectedFiles)="selectStoreLogo($event)">
                                 </app-image-upload>
                             </app-form-fields>
                             <app-form-fields [label]="'store_name'" [for]="'store_name'" [required]="true">
                                 <input class="form-control" type="text" placeholder="{{ 'enter_store_name' | translate }}" formControlName="store_name">
-                                <div class="invalid-feedback" *ngIf="form.controls['store_name'].touched && form.controls['store_name'].errors?.['required']">
+                                <div class="invalid-feedback" *ngIf="form?.controls['store_name'].touched && form.controls['store_name'].errors?.['required']">
                                     {{ 'store_name_is_required' | translate }}
                                 </div>
                             </app-form-fields>
@@ -82,24 +81,24 @@
                             </app-form-fields>
                             <app-form-fields [label]="'country'" [for]="'country'" [required]="true">
                                 <select2 class="custom-select"
-                                    [data]="(countries$ | async)?.length ? (countries$ | async) || [] : []" 
+                                    [data]="(countries$ | async)?.length ? (countries$ | async) : []" 
                                     [placeholder]="'select_country' | translate" 
                                     formControlName="country_id"
                                     (update)="countryChange($event)"
                                     resettable>
                                 </select2>
-                                <div class="invalid-feedback" *ngIf="form.controls['country_id']?.touched && form.controls['country_id']?.errors?.['required']">
+                                <div class="invalid-feedback" *ngIf="form?.controls['country_id']?.touched && form?.controls['country_id']?.errors?.['required']">
                                     {{ 'country_is_required' | translate }}
                                 </div>
                             </app-form-fields>
                             <app-form-fields [label]="'state'" [for]="'state'" [required]="true">
                                 <select2 class="custom-select" 
-                                    [data]="(states$ | async)?.length ? (states$ | async) || []: [] " 
+                                    [data]="(states$ | async)?.length ? (states$ | async) : [] " 
                                     [placeholder]="'select_state' | translate" 
                                     formControlName="state_id"
                                     resettable>
                                 </select2>
-                                <div class="invalid-feedback" *ngIf="form.controls['state_id'].touched && form.controls['state_id'].errors?.['required']">
+                                <div class="invalid-feedback" *ngIf="form?.controls['state_id'].touched && form?.controls['state_id'].errors?.['required']">
                                     {{ 'state_is_required' | translate }}
                                 </div>
                             </app-form-fields>

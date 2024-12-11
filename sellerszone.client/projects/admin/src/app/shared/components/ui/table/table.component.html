@@ -82,7 +82,7 @@
                     <th class="sm-width" *ngIf="hasCheckbox">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input checkbox_animated" id="table-checkbox"
-                                [checked]="(tableConfig?.data?.length && selected.length == tableConfig?.data?.length) || false"
+                                [checked]="(tableConfig?.data?.length && selected?.length == tableConfig?.data?.length) || false"
                                 (change)="checkUncheckAll($event)">
                             <label class="custom-control-label" for="table-checkbox">&nbsp;</label>
                         </div>
@@ -111,7 +111,7 @@
                             <input type="checkbox" class="custom-control-input checkbox_animated"
                                 id="table-checkbox-item-{{columnData.id}}"
                                 [disabled]="columnData['system_reserve'] == '1'" [value]="columnData?.id"
-                                [checked]="columnData['system_reserve'] != '1' && selected.length && selected.includes(columnData?.id)"
+                                [checked]="columnData['system_reserve'] != '1' && selected?.length && selected.includes(columnData?.id)"
                                 (change)="onItemChecked($event)">
                             <label class="custom-control-label"
                                 for="table-checkbox-item-{{columnData.id}}">&nbsp;</label>
@@ -227,5 +227,5 @@
 
 <app-confirmation-modal 
     #confirmationModal
-    (confirmed)="onActionClicked($event.actionToPerform, $event.data, $event.value)">
+    (confirmed)="onActionClicked($event?.actionToPerform, $event?.data, $event?.value)">
 </app-confirmation-modal>

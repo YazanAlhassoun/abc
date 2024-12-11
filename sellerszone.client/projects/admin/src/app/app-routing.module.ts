@@ -10,7 +10,7 @@ import { Error404Component } from "./errors/error404/error404.component";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "auth/login",    // Default to login in user app
+    redirectTo: "auth/login",
     pathMatch: "full",
   },
   {

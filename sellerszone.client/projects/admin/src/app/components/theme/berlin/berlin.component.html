@@ -22,7 +22,7 @@
                               </app-form-fields>
                               <app-link 
                                  (productFilter)="getProducts($event)"
-                                 [products]=" (product$ | async) ?? []"
+                                 [products]="(product$ | async)?.length ? (product$ | async) : []"
                                  [linkForm]="form.get('content.home_banner.main_banner.redirect_link')">
                               </app-link>
                            </div>
@@ -39,7 +39,7 @@
                               </app-form-fields>
                               <app-link 
                                  (productFilter)="getProducts($event)"
-                                 [products]="(product$ | async) ?? []"
+                                 [products]="(product$ | async)?.length ? (product$ | async) : []"
                                  [linkForm]="form.get('content.home_banner.sub_banner_1.redirect_link')">
                               </app-link>
                            </div>
@@ -67,7 +67,7 @@
                               </div>
                            </app-form-fields>
                            <h4 class="fw-semibold mb-3 txt-primary w-100">{{ 'services' | translate }} </h4>
-                           <app-button [class]="'btn btn-animation mb-3'" *ngIf="serviceArray.length < 5"
+                           <app-button [class]="'btn btn-animation mb-3'" *ngIf="serviceArray?.length < 5"
                            (click)="addService($event)" [id]="'add_service_btn'" [spinner]="false">{{ 'add_service' | translate }}</app-button>
                            <div class="shipping-accordion variant-accordion" *ngIf="serviceArray?.controls?.length">
                               <div formArrayName='services'>
@@ -79,7 +79,7 @@
                                              <div ngbAccordionItem [collapsed]="false">
                                                  <div ngbAccordionHeader>
                                                      <button ngbAccordionButton>
-                                                      {{ bundle.get('title')?.value }}
+                                                      {{ bundle.get('title').value }}
                                                      </button>
                                                  </div>
                                                  <div ngbAccordionCollapse>
@@ -152,7 +152,7 @@
                                                 <div ngbAccordionItem [collapsed]="false">
                                                    <div ngbAccordionHeader>
                                                       <button ngbAccordionButton>
-                                                         {{ form.get('content.main_content.section1_products.title')?.value }}
+                                                         {{ form.get('content.main_content.section1_products.title').value }}
                                                       </button>
                                                    </div>
                                                    <div ngbAccordionCollapse>
@@ -171,7 +171,7 @@
                                                                <app-form-fields [label]="'product'" [for]="'product_ids'">
                                                                   <select2 class="custom-select"
                                                                      [templates]="template" 
-                                                                     [data]="(product$ | async) ?? []"
+                                                                     [data]="(product$ | async)?.length ? (product$ | async) : []"
                                                                      [placeholder]="'select_product' | translate " formControlName="product_ids"
                                                                      noResultMessage="{{'no_data_found' | translate }}"
                                                                      [customSearchEnabled]="true"
@@ -204,7 +204,7 @@
                                                    <div ngbAccordionHeader>
                                                       <button ngbAccordionButton>
                                                          {{
-                                                            form.get('content.main_content.section2_categories_icon_list.title')?.value
+                                                            form.get('content.main_content.section2_categories_icon_list.title').value
                                                          }}
                                                       </button>
                                                    </div>
@@ -233,7 +233,7 @@
                                                                <app-form-fields [label]="'categories'" [for]="'type'">
                                                                   <select2 class="custom-select" 
                                                                      [templates]="template" 
-                                                                     [data]="(categories$ | async) ?? []"
+                                                                     [data]="(categories$ | async) ? (categories$ | async) : []"
                                                                      [placeholder]="'select_categories' | translate "
                                                                      formControlName="category_ids" multiple="true"
                                                                      noResultMessage="{{'no_data_found' | translate }}"
@@ -292,7 +292,7 @@
                                                                   </app-form-fields>
                                                                   <app-link 
                                                                      (productFilter)="getProducts($event)"
-                                                                     [products]=" (product$ | async) ?? []"
+                                                                     [products]="(product$ | async)?.length ? (product$ | async) : []"
                                                                      [linkForm]="form.get('content.main_content.section3_two_column_banners.banner_1.redirect_link')">
                                                                   </app-link>
                                                                </div>
@@ -309,7 +309,7 @@
                                                                   </app-form-fields>
                                                                   <app-link 
                                                                      (productFilter)="getProducts($event)"
-                                                                     [products]="(product$ | async) ?? []"
+                                                                     [products]="(product$ | async)?.length ? (product$ | async) : []"
                                                                      [linkForm]="form.get('content.main_content.section3_two_column_banners.banner_2.redirect_link')">
                                                                   </app-link>
                                                                </div>
@@ -321,7 +321,7 @@
                                                 <div ngbAccordionItem [collapsed]="false">
                                                    <div ngbAccordionHeader>
                                                       <button ngbAccordionButton>
-                                                         {{ form.get('content.main_content.section4_products.title')?.value }}
+                                                         {{ form.get('content.main_content.section4_products.title').value }}
                                                       </button>
                                                    </div>
                                                    <div ngbAccordionCollapse>
@@ -340,7 +340,7 @@
                                                                <app-form-fields [label]="'product'" [for]="'product_ids'">
                                                                   <select2 class="custom-select"
                                                                      [templates]="template" 
-                                                                     [data]="(product$ | async) ?? []"
+                                                                     [data]="(product$ | async)?.length ? (product$ | async) : []"
                                                                      [placeholder]="'select_product' | translate " 
                                                                      formControlName="product_ids"
                                                                      noResultMessage="{{'no_data_found' | translate }}"
@@ -394,7 +394,7 @@
                                                       <div ngbAccordionHeader>
                                                          <button ngbAccordionButton>
                                                             {{
-                                                               form.get('content.main_content.sidebar.sidebar_products.title')?.value
+                                                               form.get('content.main_content.sidebar.sidebar_products.title').value
                                                             }}
                                                          </button>
                                                       </div>
@@ -409,7 +409,7 @@
                                                                   <app-form-fields [label]="'Categories'" [for]="'type'">
                                                                      <select2 class="custom-select" 
                                                                         [templates]="template" 
-                                                                        [data]=" (categories$ | async) ?? []"
+                                                                        [data]="(categories$ | async)?.length ? (categories$ | async) : []"
                                                                         [placeholder]="'Select categories' | translate "
                                                                         formControlName="category_ids" multiple="true"
                                                                         noResultMessage="{{'no_data_found' | translate }}"
@@ -469,7 +469,7 @@
                                                                      </app-form-fields>
                                                                      <app-link 
                                                                         (productFilter)="getProducts($event)"
-                                                                        [products]="(product$ | async) ?? []"
+                                                                        [products]="(product$ | async)?.length ? (product$ | async) : []"
                                                                         [linkForm]="form.get('content.main_content.sidebar.right_side_banners.banner_1.redirect_link')">
                                                                      </app-link>
                                                                   </div>
@@ -481,7 +481,7 @@
                                                    <div ngbAccordionItem [collapsed]="false">
                                                       <div ngbAccordionHeader>
                                                          <button ngbAccordionButton>
-                                                            {{ form.get('content.main_content.sidebar.sidebar_products.title')?.value }}
+                                                            {{ form.get('content.main_content.sidebar.sidebar_products.title').value }}
                                                          </button>
                                                       </div>
                                                       <div ngbAccordionCollapse>
@@ -495,7 +495,7 @@
                                                                   <app-form-fields [label]="'product'" [for]="'product_ids'">
                                                                      <select2 class="custom-select"
                                                                         [templates]="template" 
-                                                                        [data]="(product$ | async) ?? []"
+                                                                        [data]="(product$ | async)?.length ? (product$ | async) : []"
                                                                         [placeholder]="'select_product' | translate " formControlName="product_ids"
                                                                         [customSearchEnabled]="true"
                                                                         (close)="productDropdown($event)"
@@ -551,7 +551,7 @@
                            </app-form-fields>
                            <app-link 
                               (productFilter)="getProducts($event)"
-                              [products]="(product$ | async) ?? []"
+                              [products]="(product$ | async)?.length ? (product$ | async) : []"
                               [linkForm]="form.get('content.full_width_banner.redirect_link')">
                            </app-link>
                         </div>
@@ -572,7 +572,7 @@
                            <app-form-fields [label]="'product'" [for]="'product_ids'">
                               <select2 class="custom-select"
                                  [templates]="template" 
-                                 [data]="(product$ | async) ?? []"
+                                 [data]="(product$ | async)?.length ? (product$ | async) : []"
                                  [placeholder]="'select_product' | translate " formControlName="product_ids"
                                  [customSearchEnabled]="true"
                                  (close)="productDropdown($event)"
